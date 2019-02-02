@@ -53,6 +53,7 @@ The project code requires the following software:
 	HTML, CSS, Bootstrap, SQLite
 
 The following Python packages:
+	
 	requests
 	httplib2
 
@@ -70,7 +71,8 @@ The following Python packages:
 
 	   vagrant up
 	   
-	   This will cause Vagrant to download the Ubuntu operating system and install it. This may take quite a while depending on how fast your Internet connection is.
+	   This will cause Vagrant to download the Ubuntu operating system and install it. This may take quite a 
+	   while depending on how fast your Internet connection is.
 
 	6. After the above command succeeds, connect to the newly created VM by typing the following command:
 
@@ -108,18 +110,18 @@ The following Python packages:
 	14. Open http://localhost:5000/ in your favourite Web browser.
 
 # JSON Endpoints
-The following are open to the public:
+The following are enpoints for item catalog:
 
-## Returns the whole catalog. It displays all items belongs to all catagory
-  /items/JSON - 
+### Returns the whole catalog. It displays all items belongs to all catagory
+	/items/JSON
 
-## Returns all items belongs to a specific category
-   /<int:category_id>/items/JSON
+### Returns all items belongs to a specific category
+	/<int:category_id>/items/JSON
 
-## Returns all items belongs to a specific user
-  /items/<user_id>/JSON 
-  - 
-## Displays all user details
-   /users/JSON 
+### Returns all items belongs to a specific user
+	/items/<user_id>/JSON 
+  
+### Displays all user details
+ 	/users/JSON 
 
 
