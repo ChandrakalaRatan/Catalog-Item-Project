@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}Homepage{% endblock %}
+{% block content %}
+    <h1>Women Exclusive Store</h1>
+    <div class="mdl-grid">
+    {% for item in latest_items %}
+        {% for category in categories if item.category_id == category.id %}
+        <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp">
+            <a href="{{ url_for('showItem', category_name=category.name, item_name=item.name) }}">
+                <figure class="mdl-card__media zooma-card_item" >
+                    {% if item.image_filename != none %}
+                    <div class="zooma-card_image">
+                    <img src={{ url_for('showItemImage', filename=item.image_filename) }} alt="" / height="280" width="300">
+                    </div>
+                    {% elif item.image_url != none %}
+                    <div class="zooma-card_image">
+                    <img src= {{ item.image_url }} alt=""/ height="280" width="300">
+                    </div>
+                    {% else %}
+                    <div class="zooma-card_latest">No image</div>
+                    {% endif %}
+                </figure>
+            </a>
+            <div class="mdl-card__title">
+                <h4 class="mdl-card__title-text">{{ item.name }}</h4>
+                <div class="mdl-card__subtitle-text"><em>({{ category.name }})</em></div>
+            </div>
+
+            <div class="mdl-card__actions mdl-card--border">
+                Quantity: {{ item.quantity }}
+                Price: {{ item.price }}
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ url_for('showItem', category_name=category.name, item_name=item.name) }}">
+                    Details
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    {% endfor %}
+    </div>
+    {% include "add_item_button.html" %}
+{% endblock %}

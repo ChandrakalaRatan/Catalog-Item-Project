@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}{{ item.name }}{% endblock %}
+{% block content %}
+    <div class="mdl-grid">
+        <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp">
+            <figure class="mdl-card__media zooma-card_item">
+                {% if item.image_filename != none %}
+                <div class="zooma-card_image"><img src={{ url_for('showItemImage', filename=item.image_filename) }} alt="" / height="280" width="300"></div>
+                {% elif item.image_url != none %}
+                <div class="zooma-card_image"><img src= {{ item.image_url }} alt=""/ height="280" width="300"></div>
+                {% else %}
+                <div class="zooma-card_no_image">No image</div>
+                {% endif %}
+            </figure>
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">{{ item.name }}</h2>
+                {% for category in categories if item.category_id == category.id %}
+                <div class="mdl-card__subtitle-text"><em>({{ category.name }})</em></div>
+                {% endfor %}
+            </div>
+            <div class="mdl-card__supporting-text">
+                <h5>{{ item.description }}</h5>
+                {% if item.quantity != none %}
+                <h7>Quantity: {{ item.quantity }}</h7>
+                <h7>Price: {{ item.price }}</h7>
+                {% endif %}
+                <em>Added by: {{ ower_name }}</em>
+            </div>
+            {% if 'username' in session %}
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ url_for('editItem', item_name=item.name) }}">Edit
+                </a>
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ url_for('deleteItem', item_name=item.name) }}">Delete
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% include "add_item_button.html" %}
+{% endblock %}

@@ -1,0 +1,91 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - Home</title>
+
+    <!-- MDL -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mdl/material.min.css') }}">
+    <script src="{{ url_for('static', filename='mdl/material.min.js') }}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block head %}
+    {% endblock head %}
+</head>
+
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-color--grey-100">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title mdl-layout--large-screen-only"><a href="/">WES</a></span>
+                <span class="mdl-layout-title mdl-layout--small-screen-only"><a href="/">WES</a></span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    {% for category in categories %}
+                    <a class="mdl-navigation__link" href="{{ url_for('showCatalogItems', category_name=category.name) }}">{{ category.name }}</a>
+                    {% endfor %}
+                    {% if 'username' not in session %}
+                    <form action="{{ url_for('showLogin') }}">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent zooma-login-logout-button">
+                            Login
+                        </button>
+                    </form>
+                    {% else %}
+                    <form action="{{ url_for('logout')}}">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--grey-300 zooma-login-logout-button">
+                            Logout
+                        </button>
+                    </form>
+                    {% endif %}
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">WES</span>
+            <nav class="mdl-navigation">
+                {% for category in categories %}
+                <a class="mdl-navigation__link" href="{{ url_for('showCatalogItems', category_name=category.name) }}">{{ category.name }}</a>
+                {% endfor %}
+            </nav>
+            <span class="mdl-layout-title">Account</span>
+            <nav class="mdl-navigation">
+                {% if 'username' not in session %}
+                <a class="mdl-navigation__link" href="{{ url_for('showLogin') }}">Login</a>
+                {% else %}
+                <p class="mdl-navigation__link">
+                    <img class="zooma-profile-picture" src="{{ session.picture }}" width="30" height="30"/><br>
+                    <strong>{{ session.username }}</strong><br>{{ session.email }}
+                </p>
+                <a class="mdl-navigation__link" href="{{ url_for('showMyCatalogItems') }}">My Collections</a>
+                <a class="mdl-navigation__link" href="{{ url_for('logout') }}">Logout</a>
+                {% endif %}
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class="flash_msg">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+html {
+    color: rgba(66,66,66,.87);
+}
+
+html, body {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%
+}
+
+
+textarea {
+    font-family: "Helvetica","Arial", sans-serif;
+}
+
+/* Make the title look like normal text while clickable. */
+.mdl-layout-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Don't let the content get too wide on large screens. */
+.mdl-grid {
+	max-width: 800px;
+}
+
+.mdl-card__media {
+	margin: 0;
+}
+
+.mdl-card__media > img {
+	max-width: 100%;
+}
+
+.mdl-card__supporting-text {
+    font-size: 15px;
+    color: rgba(0,0,0,.65);
+}
+
+/* Height of item preview cards on homepage and category pages. */
+.zooma-card_latest {
+    height: 255px;
+    background-color: #fff;
+}
+
+.zooma-card_item {
+    background-color: #fff;
+
+}
+
+/* For a full item card, display all of the image, but don't let it
+get too big that it takes over the screen. */
+.zooma-card_item img {
+        max-height: 500px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+/* For small item cards, display a cover of the image.
+This means that whatever the image ratio is, the card will
+always be the same size. */
+.zooma-card_image {
+    height: 100%;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-position: center;
+}
+
+/* Center text saying there is no image */
+.zooma-card_no_image {
+    text-align: center;
+    color: white;
+    line-height: 200px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 52px;
+}
+
+/* Style card for Google login card */
+.zooma-card-login-g > .mdl-card__title {
+    background: #EF5350;
+
+}
+
+/* Style card for Facebook login card*/
+.zooma-card-login-fb > .mdl-card__title {
+    background: #0D47A1;
+
+}
+
+.zooma-card-login > .mdl-card__title {
+    align-items: flex-start;
+    color: #fff;
+}
+
+.zooma-card-login > .mdl-card__actions {
+    display: flex;
+    box-sizing:border-box;
+    align-items: center;
+}
+
+/* Add item button fixed in bottom-left of the screen. */
+.zooma-add-item_button {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+}
+
+/* Flash feedback message styling */
+.flash_msg {
+    color: #fff;
+    background-color: #536DFE;
+}
+
+/* Put a bit of space between action button and the cancel button. */
+.zooma-cancel-button {
+    margin-left: 15px;
+}
+
+.zooma-form {
+    background-color: #fff;
+    padding: 15px;
+}
+
+/* On edit page, display current image */
+.zooma-edit-image {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.zooma-edit-image img {
+    max-width: 100%;
+}
+
+/* Set text to white on a red background. */
+.zooma-delete-button {
+    color: rgba(255, 255, 255, 0.97);
+}
+
+.zooma-login-logout-button {
+    margin-left: 10px;
+}
+
+/* Make profile picture round */
+.zooma-profile-picture {
+    border-radius: 50%;
+}
+
+/* Adjust drawer layout slightly */
+.mdl-layout__drawer > .mdl-layout-title {
+    line-height: 40px;
+}
+
+.mdl-layout__drawer .mdl-navigation {
+    padding-top: 2px;
+    padding-bottom: 16px;
+}
